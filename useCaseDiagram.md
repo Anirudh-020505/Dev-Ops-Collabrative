@@ -1,7 +1,7 @@
 # Use Case Diagram
 
 ```mermaid
-useCaseDiagram
+usecaseDiagram
     actor Admin
     actor Developer
     actor Viewer
