@@ -7,27 +7,27 @@ usecaseDiagram
     actor Viewer
     actor System
 
-    package "Auth & User Management" {
+    subgraph "Auth & User Management" {
         usecase "Login / Logout" as UC1
         usecase "Manage Users" as UC2
         usecase "Manage Roles" as UC3
     }
 
-    package "Service Monitoring" {
+    subgraph "Service Monitoring" {
         usecase "View Dashboard" as UC4
         usecase "Add / Edit Service" as UC5
         usecase "View Real-time Metrics" as UC6
         usecase "View Service Logs" as UC7
     }
 
-    package "Incident Management" {
+    subgraph "Incident Management" {
         usecase "Report Incident" as UC8
         usecase "Update Incident Status" as UC9
         usecase "Comment on Incident" as UC10
         usecase "View Incidents" as UC11
     }
 
-    package "Alerts & Notifications" {
+    subgraph "Alerts & Notifications" {
         usecase "Configure Alerts" as UC12
         usecase "Receive Notifications" as UC13
     }
