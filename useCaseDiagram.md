@@ -1,37 +1,43 @@
 # Use Case Diagram
 
 ```mermaid
-usecaseDiagram
-    actor Admin
-    actor Developer
-    actor Viewer
-    actor System
+graph TD
+    %% Actors
+    Admin((Admin))
+    Developer((Developer))
+    Viewer((Viewer))
+    System((System))
 
-    subgraph "Auth & User Management" {
-        usecase "Login / Logout" as UC1
-        usecase "Manage Users" as UC2
-        usecase "Manage Roles" as UC3
-    }
+    %% Auth & User Management
+    subgraph Auth["Auth & User Management"]
+        UC1(Login / Logout)
+        UC2(Manage Users)
+        UC3(Manage Roles)
+    end
 
-    subgraph "Service Monitoring" {
-        usecase "View Dashboard" as UC4
-        usecase "Add / Edit Service" as UC5
-        usecase "View Real-time Metrics" as UC6
-        usecase "View Service Logs" as UC7
-    }
+    %% Service Monitoring
+    subgraph Monitor["Service Monitoring"]
+        UC4(View Dashboard)
+        UC5(Add / Edit Service)
+        UC6(View Real-time Metrics)
+        UC7(View Service Logs)
+    end
 
-    subgraph "Incident Management" {
-        usecase "Report Incident" as UC8
-        usecase "Update Incident Status" as UC9
-        usecase "Comment on Incident" as UC10
-        usecase "View Incidents" as UC11
-    }
+    %% Incident Management
+    subgraph Incident["Incident Management"]
+        UC8(Report Incident)
+        UC9(Update Incident Status)
+        UC10(Comment on Incident)
+        UC11(View Incidents)
+    end
 
-    subgraph "Alerts & Notifications" {
-        usecase "Configure Alerts" as UC12
-        usecase "Receive Notifications" as UC13
-    }
+    %% Alerts & Notifications
+    subgraph Alerts["Alerts & Notifications"]
+        UC12(Configure Alerts)
+        UC13(Receive Notifications)
+    end
 
+    %% Relationships
     Admin --> UC1
     Admin --> UC2
     Admin --> UC3
@@ -61,5 +67,6 @@ usecaseDiagram
     Viewer --> UC7
     Viewer --> UC11
 
-    System --> UC13 : "Trigger Alerts"
+    System --> UC13 -.->|Trigger Alerts| UC13
+
 ```
