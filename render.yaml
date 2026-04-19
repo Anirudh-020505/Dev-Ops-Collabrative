@@ -29,5 +29,4 @@ services:
 
 databases:
   - name: devops-db
-    engine: postgres
     plan: free
