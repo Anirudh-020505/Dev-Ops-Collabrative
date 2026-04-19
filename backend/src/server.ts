@@ -4,6 +4,7 @@ import { Server } from 'socket.io';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
+import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
 
 dotenv.config();
 
@@ -15,7 +16,8 @@ const io = new Server(server, {
   }
 });
 
-export const prisma = new PrismaClient();
+const adapter = new PrismaBetterSqlite3({ url: process.env.DATABASE_URL || 'file:./prisma/dev.db' });
+export const prisma = new PrismaClient({ adapter });
 
 app.use(cors());
 app.use(express.json());
