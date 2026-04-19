@@ -1,0 +1,29 @@
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tsConfigPaths from "vite-tsconfig-paths";
+import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
+import tailwindcss from "@tailwindcss/vite";
+
+export default defineConfig({
+  plugins: [
+    TanStackRouterVite(),
+    react(),
+    tsConfigPaths(),
+    tailwindcss(),
+  ],
+  build: {
+    outDir: "dist/client",
+    sourcemap: false,
+    minify: "esbuild",
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom", "@tanstack/react-router", "@tanstack/react-query"],
+        },
+      },
+    },
+  },
+  optimizeDeps: {
+    include: ["react", "react-dom"],
+  },
+});

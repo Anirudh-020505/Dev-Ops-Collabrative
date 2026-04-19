@@ -1,0 +1,130 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum Role {
+  Admin
+  Developer
+  Viewer
+}
+
+enum ServiceStatus {
+  UP
+  DOWN
+  MAINTENANCE
+}
+
+enum Severity {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum IncidentStatus {
+  OPEN
+  INVESTIGATING
+  RESOLVED
+}
+
+enum AlertType {
+  latency
+  cpu
+  downtime
+}
+
+enum LogLevel {
+  INFO
+  WARN
+  ERROR
+}
+
+model User {
+  id               String            @id @default(uuid())
+  email            String            @unique
+  passwordHash     String
+  role             Role              @default(Developer)
+  createdAt        DateTime          @default(now())
+  
+  services         Service[]
+  incidentComments IncidentComment[]
+}
+
+model Service {
+  id                   String           @id @default(uuid())
+  name                 String
+  healthCheckUrl       String
+  checkIntervalSeconds Int              @default(60)
+  status               ServiceStatus    @default(UP)
+  createdBy            String
+  createdAt            DateTime         @default(now())
+  
+  user                 User             @relation(fields: [createdBy], references: [id])
+  
+  metrics              ServiceMetric[]
+  incidents            Incident[]
+  alerts               Alert[]
+  logs                 Log[]
+}
+
+model ServiceMetric {
+  id             String   @id @default(uuid())
+  serviceId      String
+  cpuUsage       Float
+  ramUsage       Float
+  responseTimeMs Float
+  statusCode     Int
+  recordedAt     DateTime @default(now())
+  
+  service        Service  @relation(fields: [serviceId], references: [id])
+}
+
+model Incident {
+  id          String         @id @default(uuid())
+  serviceId   String
+  title       String
+  description String
+  severity    Severity
+  status      IncidentStatus @default(OPEN)
+  createdAt   DateTime       @default(now())
+  resolvedAt  DateTime?
+  
+  service     Service        @relation(fields: [serviceId], references: [id])
+  comments    IncidentComment[]
+}
+
+model IncidentComment {
+  id         String   @id @default(uuid())
+  incidentId String
+  userId     String
+  message    String
+  createdAt  DateTime @default(now())
+  
+  incident   Incident @relation(fields: [incidentId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
+}
+
+model Alert {
+  id          String   @id @default(uuid())
+  serviceId   String
+  type        AlertType
+  channel     String
+  triggeredAt DateTime @default(now())
+  
+  service     Service  @relation(fields: [serviceId], references: [id])
+}
+
+model Log {
+  id          String   @id @default(uuid())
+  serviceId   String
+  level       LogLevel
+  message     String
+  metadata    String?
+  timestamp   DateTime @default(now())
+  
+  service     Service  @relation(fields: [serviceId], references: [id])
+}
