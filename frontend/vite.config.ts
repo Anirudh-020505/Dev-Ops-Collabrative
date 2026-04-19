@@ -13,13 +13,6 @@ export default defineConfig({
     outDir: "dist/client",
     sourcemap: false,
     minify: "esbuild",
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ["react", "react-dom", "@tanstack/react-router", "@tanstack/react-query"],
-        },
-      },
-    },
   },
   optimizeDeps: {
     include: ["react", "react-dom"],
