@@ -16,15 +16,6 @@ dist-ssr
 .nitro
 *.local
 
-# Environment files (except examples)
-.env
-.env.local
-.env.*.local
-
-# Keep these for reference
-!.env.example
-!.env.production
-
 # Wrangler / Cloudflare
 .wrangler/
 .dev.vars
@@ -39,17 +30,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-# OS
-.AppleDouble
-.LSOverride
-Thumbs.db
-
-# IDE
-*.iml
-*.iws
-*.ipr
-
-# Build artifacts (keep dist in gitignore but track deployments separately)
-.turbo
-

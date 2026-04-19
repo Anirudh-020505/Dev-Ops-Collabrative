@@ -9,11 +9,16 @@ services:
       - type: rewrite
         source: /*
         destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          name: devops-backend
+          property: url
 
   - type: web
     name: devops-backend
     env: node
-    plan: free
+    plan: standard
     buildCommand: npm install && npm run build && npx prisma migrate deploy
     startCommand: npm start
     rootDir: backend
@@ -26,7 +31,15 @@ services:
         generateValue: true
       - key: PORT
         value: "10000"
+      - key: NODE_ENV
+        value: production
+      - key: FRONTEND_URL
+        fromService:
+          name: devops-frontend
+          property: url
 
 databases:
   - name: devops-db
-    plan: free
+    databaseName: devops_db
+    user: devops_user
+    plan: standard

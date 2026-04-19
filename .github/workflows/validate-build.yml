@@ -1,0 +1,71 @@
+name: Validate Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install backend dependencies
+        working-directory: ./backend
+        run: npm install
+
+      - name: Build backend
+        working-directory: ./backend
+        run: npm run build
+
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: npm install
+
+      - name: Build frontend
+        working-directory: ./frontend
+        run: npm run build
+
+      - name: Check TypeScript
+        working-directory: ./backend
+        run: npx tsc --noEmit
+
+  render-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate render.yaml
+        run: |
+          if [ -f render.yaml ]; then
+            echo "✓ render.yaml found"
+          else
+            echo "✗ render.yaml not found"
+            exit 1
+          fi
+
+      - name: Validate .renderignore files
+        run: |
+          if [ -f backend/.renderignore ]; then
+            echo "✓ backend/.renderignore found"
+          else
+            echo "✗ backend/.renderignore missing"
+            exit 1
+          fi
+          if [ -f frontend/.renderignore ]; then
+            echo "✓ frontend/.renderignore found"
+          else
+            echo "✗ frontend/.renderignore missing"
+            exit 1
+          fi
