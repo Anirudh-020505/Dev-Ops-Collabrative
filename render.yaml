@@ -13,7 +13,7 @@ services:
   - type: web
     name: devops-backend
     env: node
-    plan: standard
+    plan: free
     buildCommand: npm install && npm run build && npx prisma migrate deploy
     startCommand: npm start
     rootDir: backend
@@ -33,4 +33,4 @@ databases:
   - name: devops-db
     databaseName: devops_db
     user: devops_user
-    plan: standard
+    plan: free
