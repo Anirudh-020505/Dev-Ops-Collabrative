@@ -78,7 +78,7 @@ function makeBatch(cursor: number, severityFilter: Set<LogSeverity>): LogEntry[]
       severity: sev,
       service: pick(SERVICES, cursor + i),
       message: pick(MESSAGES[sev], cursor + i * 3),
-      code: `0x${(0xa000 + ((cursor + i) * 137) % 0x5fff).toString(16).toUpperCase()}`,
+      code: `0x${(0xa000 + (((cursor + i) * 137) % 0x5fff)).toString(16).toUpperCase()}`,
     });
   }
   return out;
@@ -90,10 +90,7 @@ function LogsPage() {
   const [filters, setFilters] = useState<Set<LogSeverity>>(new Set());
 
   // Stable fetch function — recreate when filters change
-  const fetchMore = useCallback(
-    (cursor: number) => makeBatch(cursor, filters),
-    [filters],
-  );
+  const fetchMore = useCallback((cursor: number) => makeBatch(cursor, filters), [filters]);
 
   const { items, loading, done, sentinelRef } = useInfiniteScroll<LogEntry>(fetchMore, {
     max: 480,
@@ -121,9 +118,7 @@ function LogsPage() {
           <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
             // endless system log · live stream
           </div>
-          <h2 className="mt-1 font-display text-2xl font-semibold tracking-tight">
-            System Logs
-          </h2>
+          <h2 className="mt-1 font-display text-2xl font-semibold tracking-tight">System Logs</h2>
         </div>
         <div className="flex items-center gap-2">
           <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">

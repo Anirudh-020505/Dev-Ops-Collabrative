@@ -8,9 +8,15 @@ export const Route = createFileRoute("/alerting")({
   head: () => ({
     meta: [
       { title: "Alerting — DevOps Collaborator" },
-      { name: "description", content: "Configure webhooks, Slack, Discord, and email channels for incident alerting." },
+      {
+        name: "description",
+        content: "Configure webhooks, Slack, Discord, and email channels for incident alerting.",
+      },
       { property: "og:title", content: "Alerting Configuration" },
-      { property: "og:description", content: "Configure webhooks, Slack, Discord, and email channels for incident alerting." },
+      {
+        property: "og:description",
+        content: "Configure webhooks, Slack, Discord, and email channels for incident alerting.",
+      },
     ],
   }),
   component: AlertingPage,
@@ -93,20 +99,22 @@ function AlertingPage() {
                   Recipients
                 </div>
                 <ul className="space-y-1.5">
-                  {["oncall@platform.io", "leads@platform.io", "alex.kovac@platform.io"].map((e) => (
-                    <li
-                      key={e}
-                      className="flex items-center justify-between border border-border bg-panel-elevated px-3 py-2"
-                    >
-                      <div className="flex items-center gap-2">
-                        <Mail className="h-3 w-3 text-plasma" />
-                        <span className="font-mono text-xs">{e}</span>
-                      </div>
-                      <button className="text-muted-foreground hover:text-destructive">
-                        <X className="h-3.5 w-3.5" />
-                      </button>
-                    </li>
-                  ))}
+                  {["oncall@platform.io", "leads@platform.io", "alex.kovac@platform.io"].map(
+                    (e) => (
+                      <li
+                        key={e}
+                        className="flex items-center justify-between border border-border bg-panel-elevated px-3 py-2"
+                      >
+                        <div className="flex items-center gap-2">
+                          <Mail className="h-3 w-3 text-plasma" />
+                          <span className="font-mono text-xs">{e}</span>
+                        </div>
+                        <button className="text-muted-foreground hover:text-destructive">
+                          <X className="h-3.5 w-3.5" />
+                        </button>
+                      </li>
+                    ),
+                  )}
                 </ul>
                 <div className="mt-2 flex">
                   <input
@@ -149,11 +157,7 @@ function AlertingPage() {
   );
 }
 
-function IntegrationCard({
-  integration,
-}: {
-  integration: (typeof integrations)[number];
-}) {
+function IntegrationCard({ integration }: { integration: (typeof integrations)[number] }) {
   const [enabled, setEnabled] = useState(integration.enabled);
   const Icon = integration.icon;
 
@@ -165,15 +169,18 @@ function IntegrationCard({
             className="grid h-9 w-9 place-items-center border"
             style={{
               borderColor: enabled ? integration.color : "var(--border)",
-              backgroundColor: enabled ? `color-mix(in oklab, ${integration.color} 12%, transparent)` : "transparent",
+              backgroundColor: enabled
+                ? `color-mix(in oklab, ${integration.color} 12%, transparent)`
+                : "transparent",
             }}
           >
-            <Icon className="h-4 w-4" style={{ color: enabled ? integration.color : "var(--muted-foreground)" }} />
+            <Icon
+              className="h-4 w-4"
+              style={{ color: enabled ? integration.color : "var(--muted-foreground)" }}
+            />
           </div>
           <div>
-            <h4 className="font-display text-sm font-semibold tracking-wide">
-              {integration.name}
-            </h4>
+            <h4 className="font-display text-sm font-semibold tracking-wide">{integration.name}</h4>
             <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
               {enabled ? "// active · listening" : "// disabled"}
             </div>

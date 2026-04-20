@@ -21,9 +21,15 @@ export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
       { title: "Services — DevOps Collaborator" },
-      { name: "description", content: "Manage and monitor every registered service in your infrastructure." },
+      {
+        name: "description",
+        content: "Manage and monitor every registered service in your infrastructure.",
+      },
       { property: "og:title", content: "Services — DevOps Collaborator" },
-      { property: "og:description", content: "Manage and monitor every registered service in your infrastructure." },
+      {
+        property: "og:description",
+        content: "Manage and monitor every registered service in your infrastructure.",
+      },
     ],
   }),
   component: ServicesPage,
@@ -71,16 +77,14 @@ function ServicesPage() {
           <table className="w-full min-w-[900px] border-collapse">
             <thead>
               <tr className="border-b border-border bg-panel-elevated">
-                {["Name", "URL", "Status", "Latency", "CPU / RAM", "Owner", "Actions"].map(
-                  (h) => (
-                    <th
-                      key={h}
-                      className="px-4 py-3 text-left font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground"
-                    >
-                      {h}
-                    </th>
-                  )
-                )}
+                {["Name", "URL", "Status", "Latency", "CPU / RAM", "Owner", "Actions"].map((h) => (
+                  <th
+                    key={h}
+                    className="px-4 py-3 text-left font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground"
+                  >
+                    {h}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
@@ -89,8 +93,8 @@ function ServicesPage() {
                   s.status === "UP"
                     ? "var(--success)"
                     : s.status === "DOWN"
-                    ? "var(--destructive)"
-                    : "var(--warning)";
+                      ? "var(--destructive)"
+                      : "var(--warning)";
                 return (
                   <tr
                     key={s.id}
@@ -106,7 +110,13 @@ function ServicesPage() {
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
-                        <Sparkline data={s.trend} color={c} width={70} height={22} showMarkers={false} />
+                        <Sparkline
+                          data={s.trend}
+                          color={c}
+                          width={70}
+                          height={22}
+                          showMarkers={false}
+                        />
                         <span className="font-mono text-sm tabular-nums" style={{ color: c }}>
                           {s.latency}
                           <span className="ml-0.5 text-[9px] text-muted-foreground">ms</span>
@@ -120,7 +130,10 @@ function ServicesPage() {
                             CPU
                           </span>
                           <Bar value={s.cpu} color={c} height={4} />
-                          <span className="font-mono text-[10px] tabular-nums w-7 text-right" style={{color: c}}>
+                          <span
+                            className="font-mono text-[10px] tabular-nums w-7 text-right"
+                            style={{ color: c }}
+                          >
                             {s.cpu}
                           </span>
                         </div>
@@ -129,7 +142,10 @@ function ServicesPage() {
                             RAM
                           </span>
                           <Bar value={s.ram} color={c} height={4} />
-                          <span className="font-mono text-[10px] tabular-nums w-7 text-right" style={{color: c}}>
+                          <span
+                            className="font-mono text-[10px] tabular-nums w-7 text-right"
+                            style={{ color: c }}
+                          >
                             {s.ram}
                           </span>
                         </div>
@@ -157,13 +173,7 @@ function ServicesPage() {
   );
 }
 
-function SegBtn({
-  children,
-  active,
-}: {
-  children: React.ReactNode;
-  active?: boolean;
-}) {
+function SegBtn({ children, active }: { children: React.ReactNode; active?: boolean }) {
   return (
     <button
       className={`px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] panel-notched-sm transition-all ${
@@ -177,13 +187,7 @@ function SegBtn({
   );
 }
 
-function IconBtn({
-  icon: Icon,
-  danger,
-}: {
-  icon: typeof Activity;
-  danger?: boolean;
-}) {
+function IconBtn({ icon: Icon, danger }: { icon: typeof Activity; danger?: boolean }) {
   return (
     <button
       className={`grid h-7 w-7 place-items-center border border-border bg-panel-elevated transition-colors ${
@@ -216,7 +220,10 @@ function RegisterModal({ onClose }: { onClose: () => void }) {
               REGISTER NEW SERVICE
             </h3>
           </div>
-          <button onClick={onClose} className="grid h-8 w-8 place-items-center border border-border hover:border-destructive/60 hover:text-destructive">
+          <button
+            onClick={onClose}
+            className="grid h-8 w-8 place-items-center border border-border hover:border-destructive/60 hover:text-destructive"
+          >
             <X className="h-4 w-4" />
           </button>
         </div>
@@ -238,16 +245,25 @@ function RegisterModal({ onClose }: { onClose: () => void }) {
               <Field label="Error Rate Threshold" placeholder="2%" />
             </div>
             <div className="mt-3 flex items-center gap-2">
-              <Toggle defaultOn /> <span className="font-mono text-xs text-muted-foreground">Notify Discord channel</span>
+              <Toggle defaultOn />{" "}
+              <span className="font-mono text-xs text-muted-foreground">
+                Notify Discord channel
+              </span>
             </div>
             <div className="mt-2 flex items-center gap-2">
-              <Toggle /> <span className="font-mono text-xs text-muted-foreground">Auto-create incident on DOWN</span>
+              <Toggle />{" "}
+              <span className="font-mono text-xs text-muted-foreground">
+                Auto-create incident on DOWN
+              </span>
             </div>
           </Section>
         </div>
 
         <div className="flex items-center justify-end gap-2 border-t border-border bg-panel-elevated px-5 py-3">
-          <button onClick={onClose} className="px-4 py-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground hover:text-foreground">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground hover:text-foreground"
+          >
             Cancel
           </button>
           <button className="flex items-center gap-2 bg-plasma px-5 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-primary-foreground panel-notched-sm hover:glow-plasma transition-all">
@@ -304,7 +320,9 @@ function Toggle({ defaultOn }: { defaultOn?: boolean }) {
     >
       <span
         className={`absolute top-0.5 h-3.5 w-3.5 transition-all ${
-          on ? "left-[22px] bg-plasma shadow-[0_0_8px_var(--plasma)]" : "left-0.5 bg-muted-foreground"
+          on
+            ? "left-[22px] bg-plasma shadow-[0_0_8px_var(--plasma)]"
+            : "left-0.5 bg-muted-foreground"
         }`}
       />
     </button>

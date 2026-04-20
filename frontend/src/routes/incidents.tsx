@@ -17,9 +17,15 @@ export const Route = createFileRoute("/incidents")({
   head: () => ({
     meta: [
       { title: "Incidents — DevOps Collaborator" },
-      { name: "description", content: "Track, triage, and resolve incidents with your team in real time." },
+      {
+        name: "description",
+        content: "Track, triage, and resolve incidents with your team in real time.",
+      },
       { property: "og:title", content: "Incident Response Center" },
-      { property: "og:description", content: "Track, triage, and resolve incidents with your team in real time." },
+      {
+        property: "og:description",
+        content: "Track, triage, and resolve incidents with your team in real time.",
+      },
     ],
   }),
   component: IncidentsPage,
@@ -94,10 +100,30 @@ const incidents = [
 ];
 
 const comments = [
-  { author: "A. Kovac", role: "Lead", time: "14:42", text: "Stripe ack'd the issue, they're seeing webhook propagation delays globally. Status page incident opened on their side." },
-  { author: "M. Reyes", role: "SRE", time: "14:40", text: "Rolled back to v3.0.6 on prod-eu. Connection pool saturation looks healthy now." },
-  { author: "auto-bot", role: "System", time: "14:39", text: "Auto-paged oncall rotation. Slack thread created in #payments-incidents." },
-  { author: "S. Chen", role: "Eng", time: "14:38", text: "Confirmed reproduction in staging — 5xx rate at 87% on /webhooks/stripe endpoint." },
+  {
+    author: "A. Kovac",
+    role: "Lead",
+    time: "14:42",
+    text: "Stripe ack'd the issue, they're seeing webhook propagation delays globally. Status page incident opened on their side.",
+  },
+  {
+    author: "M. Reyes",
+    role: "SRE",
+    time: "14:40",
+    text: "Rolled back to v3.0.6 on prod-eu. Connection pool saturation looks healthy now.",
+  },
+  {
+    author: "auto-bot",
+    role: "System",
+    time: "14:39",
+    text: "Auto-paged oncall rotation. Slack thread created in #payments-incidents.",
+  },
+  {
+    author: "S. Chen",
+    role: "Eng",
+    time: "14:38",
+    text: "Confirmed reproduction in staging — 5xx rate at 87% on /webhooks/stripe endpoint.",
+  },
 ];
 
 function IncidentsPage() {
@@ -131,14 +157,18 @@ function IncidentsPage() {
       {/* Filters */}
       <div className="mb-4 panel panel-notched-sm flex flex-wrap items-center gap-2 p-3">
         <div className="flex items-center gap-2 border-r border-border pr-3">
-          <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">STATUS</span>
+          <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+            STATUS
+          </span>
           <Seg active>ALL</Seg>
           <Seg>OPEN</Seg>
           <Seg>INVESTIGATING</Seg>
           <Seg>RESOLVED</Seg>
         </div>
         <div className="flex items-center gap-2 border-r border-border pr-3">
-          <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">URGENCY</span>
+          <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+            URGENCY
+          </span>
           <Seg active>ANY</Seg>
           <Seg className="text-destructive">P1</Seg>
           <Seg className="text-warning">P2</Seg>
@@ -179,7 +209,9 @@ function IncidentsPage() {
                     <span className="font-mono text-[10px] tracking-wider text-muted-foreground">
                       {i.id}
                     </span>
-                    <span className={`mt-1 border px-1.5 py-px font-mono text-[9px] font-semibold uppercase tracking-wider ${statusMap[i.status]}`}>
+                    <span
+                      className={`mt-1 border px-1.5 py-px font-mono text-[9px] font-semibold uppercase tracking-wider ${statusMap[i.status]}`}
+                    >
                       {i.status}
                     </span>
                   </div>
@@ -209,11 +241,7 @@ function IncidentsPage() {
         {/* Detail panel */}
         {inc && (
           <div className="space-y-4 xl:sticky xl:top-20 xl:self-start">
-            <Panel
-              title={inc.id}
-              subtitle={`// ${inc.urgency} · ${inc.status}`}
-              scan
-            >
+            <Panel title={inc.id} subtitle={`// ${inc.urgency} · ${inc.status}`} scan>
               <h3 className="mb-2 font-display text-base font-semibold leading-snug">
                 {inc.title}
               </h3>
@@ -245,7 +273,10 @@ function IncidentsPage() {
                 {comments.map((c, i) => (
                   <li key={i} className="flex gap-3">
                     <div className="grid h-8 w-8 shrink-0 place-items-center border border-plasma/40 bg-plasma/10 font-mono text-[10px] font-bold text-plasma">
-                      {c.author.split(" ").map((p) => p[0]).join("")}
+                      {c.author
+                        .split(" ")
+                        .map((p) => p[0])
+                        .join("")}
                     </div>
                     <div className="flex-1 border border-border bg-panel-elevated p-3">
                       <div className="mb-1 flex items-center justify-between gap-2">
@@ -299,7 +330,9 @@ function Detail({
       <div className="font-mono text-[9px] uppercase tracking-wider text-muted-foreground">
         {label}
       </div>
-      <div className={`mt-0.5 text-sm font-semibold ${mono ? "font-mono tabular-nums" : ""} ${color}`}>
+      <div
+        className={`mt-0.5 text-sm font-semibold ${mono ? "font-mono tabular-nums" : ""} ${color}`}
+      >
         {value}
       </div>
     </div>
@@ -345,7 +378,8 @@ function Seg({
 function FailureChart() {
   // Simulated 5xx rate over 30 buckets
   const data = [
-    1, 2, 1, 1, 2, 3, 2, 1, 4, 6, 12, 28, 42, 60, 75, 84, 87, 80, 65, 55, 48, 42, 38, 35, 30, 28, 22, 18, 14, 11,
+    1, 2, 1, 1, 2, 3, 2, 1, 4, 6, 12, 28, 42, 60, 75, 84, 87, 80, 65, 55, 48, 42, 38, 35, 30, 28,
+    22, 18, 14, 11,
   ];
   const max = 100;
   return (
@@ -365,25 +399,20 @@ function FailureChart() {
       {data.map((v, i) => {
         const h = (v / max) * 76;
         const x = i * 10;
-        const color =
-          v > 50
-            ? "var(--destructive)"
-            : v > 20
-            ? "var(--warning)"
-            : "var(--plasma)";
+        const color = v > 50 ? "var(--destructive)" : v > 20 ? "var(--warning)" : "var(--plasma)";
         return (
-          <rect
-            key={i}
-            x={x + 1}
-            y={80 - h}
-            width={8}
-            height={h}
-            fill={color}
-            opacity={0.85}
-          />
+          <rect key={i} x={x + 1} y={80 - h} width={8} height={h} fill={color} opacity={0.85} />
         );
       })}
-      <line x1={170} x2={170} y1={0} y2={80} stroke="var(--destructive)" strokeDasharray="2 2" strokeWidth={1} />
+      <line
+        x1={170}
+        x2={170}
+        y1={0}
+        y2={80}
+        stroke="var(--destructive)"
+        strokeDasharray="2 2"
+        strokeWidth={1}
+      />
     </svg>
   );
 }

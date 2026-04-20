@@ -6,7 +6,8 @@
     "build": "npx prisma generate && npx tsc",
     "start": "node dist/server.js",
     "dev": "npx ts-node src/server.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:integration": "npm run build && node --test tests/health.integration.test.mjs"
   },
   "keywords": [],
   "author": "",

@@ -40,9 +40,7 @@ function LoginPage() {
             <div className="absolute inset-0 border border-plasma/60 panel-notched-sm" />
             <Activity className="h-4 w-4 text-plasma" strokeWidth={2.5} />
           </div>
-          <span className="font-display text-sm font-semibold tracking-wide">
-            DEVOPS · COLLAB
-          </span>
+          <span className="font-display text-sm font-semibold tracking-wide">DEVOPS · COLLAB</span>
         </Link>
       </div>
 
@@ -60,8 +58,8 @@ function LoginPage() {
                 <span className="text-plasma">authentication.</span>
               </h2>
               <p className="mt-4 max-w-xs text-sm text-muted-foreground">
-                Cryptographic handshake with hardware-attested keys. All
-                sessions are signed, scoped, and audited.
+                Cryptographic handshake with hardware-attested keys. All sessions are signed,
+                scoped, and audited.
               </p>
 
               <div className="mt-10 flex items-center justify-center">

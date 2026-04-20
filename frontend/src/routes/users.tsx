@@ -9,19 +9,64 @@ export const Route = createFileRoute("/users")({
       { title: "Users — DevOps Collaborator" },
       { name: "description", content: "Manage team members, roles, and access permissions." },
       { property: "og:title", content: "Users & Permissions" },
-      { property: "og:description", content: "Manage team members, roles, and access permissions." },
+      {
+        property: "og:description",
+        content: "Manage team members, roles, and access permissions.",
+      },
     ],
   }),
   component: UsersPage,
 });
 
 const users = [
-  { name: "Alex Kovac", id: "0x4F2A", role: "LEAD", team: "Core Platform", status: "ONLINE", initials: "AK" },
-  { name: "Marcus Reyes", id: "0x88C1", role: "SRE", team: "Infrastructure", status: "ONLINE", initials: "MR" },
-  { name: "Sara Chen", id: "0x12B0", role: "ENGINEER", team: "Identity", status: "ONLINE", initials: "SC" },
-  { name: "Jordan Park", id: "0x9F44", role: "ENGINEER", team: "Data", status: "AWAY", initials: "JP" },
-  { name: "Ines Volkov", id: "0xA72E", role: "ON-CALL", team: "Billing", status: "ONLINE", initials: "IV" },
-  { name: "Daniel Roe", id: "0x5510", role: "VIEWER", team: "Discovery", status: "OFFLINE", initials: "DR" },
+  {
+    name: "Alex Kovac",
+    id: "0x4F2A",
+    role: "LEAD",
+    team: "Core Platform",
+    status: "ONLINE",
+    initials: "AK",
+  },
+  {
+    name: "Marcus Reyes",
+    id: "0x88C1",
+    role: "SRE",
+    team: "Infrastructure",
+    status: "ONLINE",
+    initials: "MR",
+  },
+  {
+    name: "Sara Chen",
+    id: "0x12B0",
+    role: "ENGINEER",
+    team: "Identity",
+    status: "ONLINE",
+    initials: "SC",
+  },
+  {
+    name: "Jordan Park",
+    id: "0x9F44",
+    role: "ENGINEER",
+    team: "Data",
+    status: "AWAY",
+    initials: "JP",
+  },
+  {
+    name: "Ines Volkov",
+    id: "0xA72E",
+    role: "ON-CALL",
+    team: "Billing",
+    status: "ONLINE",
+    initials: "IV",
+  },
+  {
+    name: "Daniel Roe",
+    id: "0x5510",
+    role: "VIEWER",
+    team: "Discovery",
+    status: "OFFLINE",
+    initials: "DR",
+  },
 ];
 
 const statusColor = (s: string) =>
@@ -53,7 +98,9 @@ function UsersPage() {
           { label: "ADMINS", v: 2, color: "text-plasma" },
         ].map((s) => (
           <div key={s.label} className="panel panel-notched-sm p-4">
-            <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">{s.label}</div>
+            <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+              {s.label}
+            </div>
             <div className={`mt-1 font-mono text-3xl font-semibold tabular-nums ${s.color}`}>
               {s.v.toString().padStart(2, "0")}
             </div>
@@ -79,8 +126,8 @@ function UsersPage() {
                       u.status === "ONLINE"
                         ? "bg-success pulse-dot text-success"
                         : u.status === "AWAY"
-                        ? "bg-warning"
-                        : "bg-muted-foreground"
+                          ? "bg-warning"
+                          : "bg-muted-foreground"
                     }`}
                   />
                 </div>
@@ -110,9 +157,7 @@ function UsersPage() {
                   <Mail className="h-3 w-3" />
                   Message
                 </button>
-                <span className="font-mono text-[10px] text-muted-foreground">
-                  LAST · 2m ago
-                </span>
+                <span className="font-mono text-[10px] text-muted-foreground">LAST · 2m ago</span>
               </div>
             </div>
           ))}

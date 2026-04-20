@@ -113,8 +113,10 @@ export function TableSkeleton({ rows = 8, cols = 6 }: { rows?: number; cols?: nu
   const widths = ["68%", "84%", "44%", "92%", "56%", "76%"];
   return (
     <div className="panel panel-notched overflow-hidden" role="status" aria-label="Loading table">
-      <div className="grid items-center gap-4 border-b border-border bg-panel-elevated px-5 py-3"
-        style={{ gridTemplateColumns: `repeat(${cols}, minmax(0,1fr))` }}>
+      <div
+        className="grid items-center gap-4 border-b border-border bg-panel-elevated px-5 py-3"
+        style={{ gridTemplateColumns: `repeat(${cols}, minmax(0,1fr))` }}
+      >
         {Array.from({ length: cols }).map((_, i) => (
           <Block key={i} width="60%" height="9px" />
         ))}

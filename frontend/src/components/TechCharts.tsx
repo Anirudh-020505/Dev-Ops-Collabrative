@@ -19,7 +19,9 @@ export function Sparkline({
   const range = max - min || 1;
   const step = width / (data.length - 1);
   const points = data.map((v, i) => [i * step, height - ((v - min) / range) * height] as const);
-  const path = points.map(([x, y], i) => `${i === 0 ? "M" : "L"}${x.toFixed(1)},${y.toFixed(1)}`).join(" ");
+  const path = points
+    .map(([x, y], i) => `${i === 0 ? "M" : "L"}${x.toFixed(1)},${y.toFixed(1)}`)
+    .join(" ");
   const area =
     `M0,${height} ` +
     points.map(([x, y]) => `L${x.toFixed(1)},${y.toFixed(1)}`).join(" ") +
@@ -149,10 +151,7 @@ export function Bar({
 }) {
   const pct = Math.min(100, (value / max) * 100);
   return (
-    <div
-      className="relative w-full bg-muted overflow-hidden"
-      style={{ height }}
-    >
+    <div className="relative w-full bg-muted overflow-hidden" style={{ height }}>
       <div
         className="h-full transition-all"
         style={{

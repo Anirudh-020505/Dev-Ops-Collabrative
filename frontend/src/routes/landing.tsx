@@ -22,8 +22,7 @@ export const Route = createFileRoute("/landing")({
       { property: "og:title", content: "DevOps Collaborator — Command & Control" },
       {
         property: "og:description",
-        content:
-          "Sub-millisecond telemetry, automated incident routing, encrypted team comms.",
+        content: "Sub-millisecond telemetry, automated incident routing, encrypted team comms.",
       },
     ],
   }),
@@ -98,9 +97,8 @@ function LandingPage() {
             </h1>
 
             <p className="mt-6 max-w-xl text-base text-muted-foreground md:text-lg">
-              Sub-millisecond telemetry, automated incident routing, and
-              encrypted team comms — engineered for the operators who keep the
-              lights on.
+              Sub-millisecond telemetry, automated incident routing, and encrypted team comms —
+              engineered for the operators who keep the lights on.
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-3">
@@ -109,7 +107,10 @@ function LandingPage() {
                 className="group flex items-center gap-2 bg-plasma px-6 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-primary-foreground panel-notched-sm hover:glow-plasma transition-all"
               >
                 Initialize Dashboard
-                <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" strokeWidth={3} />
+                <ChevronRight
+                  className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                  strokeWidth={3}
+                />
               </Link>
               <a
                 href="#features"
@@ -205,8 +206,7 @@ function LandingPage() {
               </span>
             </div>
             <p className="mt-4 max-w-xs font-mono text-[11px] leading-relaxed text-muted-foreground">
-              Industrial-grade observability and incident response, engineered
-              for operators.
+              Industrial-grade observability and incident response, engineered for operators.
             </p>
           </div>
 
@@ -236,9 +236,15 @@ function LandingPage() {
               © 2025 DEVOPS COLLAB · ALL RIGHTS RESERVED
             </div>
             <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-              <a href="#" className="hover:text-plasma">Status</a>
-              <a href="#" className="hover:text-plasma">Privacy</a>
-              <a href="#" className="hover:text-plasma">Terms</a>
+              <a href="#" className="hover:text-plasma">
+                Status
+              </a>
+              <a href="#" className="hover:text-plasma">
+                Privacy
+              </a>
+              <a href="#" className="hover:text-plasma">
+                Terms
+              </a>
               <a href="#" className="flex items-center gap-1.5 hover:text-plasma">
                 <Github className="h-3.5 w-3.5" /> GitHub
               </a>
@@ -307,12 +313,8 @@ function FeaturePanel({
           {String(index + 1).padStart(2, "0")} · {code}
         </span>
       </div>
-      <h3 className="mt-6 font-display text-lg font-semibold tracking-tight">
-        {title}
-      </h3>
-      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-        {desc}
-      </p>
+      <h3 className="mt-6 font-display text-lg font-semibold tracking-tight">{title}</h3>
+      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{desc}</p>
     </div>
   );
 }
@@ -346,14 +348,16 @@ function HeroIsometric() {
                 <div className="font-mono text-[8px] uppercase tracking-wider text-muted-foreground">
                   M-{i + 1}
                 </div>
-                <div className="mt-1 font-display text-base font-semibold text-plasma">
-                  {v}
-                </div>
+                <div className="mt-1 font-display text-base font-semibold text-plasma">{v}</div>
               </div>
             ))}
           </div>
           <div className="relative mt-3 h-24 overflow-hidden border border-border bg-tech-grid">
-            <svg viewBox="0 0 200 80" className="absolute inset-0 h-full w-full" preserveAspectRatio="none">
+            <svg
+              viewBox="0 0 200 80"
+              className="absolute inset-0 h-full w-full"
+              preserveAspectRatio="none"
+            >
               <polyline
                 points="0,55 20,42 40,48 60,30 80,35 100,18 120,28 140,12 160,22 180,8 200,16"
                 fill="none"
@@ -379,9 +383,7 @@ function HeroIsometric() {
           <div className="font-mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground">
             // incident · #847
           </div>
-          <div className="mt-1 font-display text-sm font-semibold">
-            payment-gateway
-          </div>
+          <div className="mt-1 font-display text-sm font-semibold">payment-gateway</div>
           <div className="mt-2 inline-flex items-center gap-1.5 border border-destructive/60 bg-destructive/10 px-2 py-0.5 font-mono text-[9px] font-semibold uppercase tracking-wider text-destructive">
             <span className="h-1 w-1 rounded-full bg-destructive" /> P1 · DOWN
           </div>

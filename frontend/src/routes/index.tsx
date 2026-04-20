@@ -20,23 +20,70 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Dashboard — DevOps Collaborator" },
-      { name: "description", content: "Real-time DevOps service health, incidents, and alerting overview." },
+      {
+        name: "description",
+        content: "Real-time DevOps service health, incidents, and alerting overview.",
+      },
       { property: "og:title", content: "Dashboard — DevOps Collaborator" },
-      { property: "og:description", content: "Real-time DevOps service health, incidents, and alerting overview." },
+      {
+        property: "og:description",
+        content: "Real-time DevOps service health, incidents, and alerting overview.",
+      },
     ],
   }),
   component: DashboardPage,
 });
 
 const activities = [
-  { time: "14:42:08", type: "DOWN", text: "Service Payment Processor went DOWN", actor: "monitor", urgent: true },
-  { time: "14:38:21", type: "INC", text: "User Alice opened Incident #123 — `payment 5xx spike`", actor: "alice@dev" },
-  { time: "14:35:02", type: "DEG", text: "Search Cluster degraded — latency 312ms (p95)", actor: "monitor" },
-  { time: "14:31:55", type: "DEPLOY", text: "Auth Service v2.4.1 deployed to prod-eu", actor: "ci/cd" },
-  { time: "14:29:14", type: "MSG", text: "New comment on Incident #100 — “rolling back deploy”", actor: "marcus@ops" },
-  { time: "14:25:37", type: "OK", text: "Notification Hub recovered — back to UP", actor: "monitor" },
-  { time: "14:21:02", type: "ACK", text: "Incident #119 acknowledged by oncall-rotation", actor: "auto" },
-  { time: "14:18:48", type: "DEPLOY", text: "API Gateway v3.0.7 deployed to prod-eu", actor: "ci/cd" },
+  {
+    time: "14:42:08",
+    type: "DOWN",
+    text: "Service Payment Processor went DOWN",
+    actor: "monitor",
+    urgent: true,
+  },
+  {
+    time: "14:38:21",
+    type: "INC",
+    text: "User Alice opened Incident #123 — `payment 5xx spike`",
+    actor: "alice@dev",
+  },
+  {
+    time: "14:35:02",
+    type: "DEG",
+    text: "Search Cluster degraded — latency 312ms (p95)",
+    actor: "monitor",
+  },
+  {
+    time: "14:31:55",
+    type: "DEPLOY",
+    text: "Auth Service v2.4.1 deployed to prod-eu",
+    actor: "ci/cd",
+  },
+  {
+    time: "14:29:14",
+    type: "MSG",
+    text: "New comment on Incident #100 — “rolling back deploy”",
+    actor: "marcus@ops",
+  },
+  {
+    time: "14:25:37",
+    type: "OK",
+    text: "Notification Hub recovered — back to UP",
+    actor: "monitor",
+  },
+  {
+    time: "14:21:02",
+    type: "ACK",
+    text: "Incident #119 acknowledged by oncall-rotation",
+    actor: "auto",
+  },
+  {
+    time: "14:18:48",
+    type: "DEPLOY",
+    text: "API Gateway v3.0.7 deployed to prod-eu",
+    actor: "ci/cd",
+  },
 ];
 
 const typeStyles: Record<string, string> = {
@@ -63,8 +110,7 @@ function DashboardPage() {
             // overview · live telemetry
           </div>
           <h2 className="mt-1 font-display text-2xl font-semibold tracking-tight">
-            Mission Control{" "}
-            <span className="text-muted-foreground">— EU·WEST·3</span>
+            Mission Control <span className="text-muted-foreground">— EU·WEST·3</span>
           </h2>
         </div>
         <div className="hidden items-center gap-3 font-mono text-[10px] uppercase tracking-wider text-muted-foreground md:flex">
@@ -174,7 +220,9 @@ function DashboardPage() {
             <div className="hidden items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-muted-foreground md:flex">
               <StatusBadge status="UP">{upCount} up</StatusBadge>
               <StatusBadge status="DEGRADED">{degCount} deg</StatusBadge>
-              <StatusBadge status="DOWN" pulse>{downCount} down</StatusBadge>
+              <StatusBadge status="DOWN" pulse>
+                {downCount} down
+              </StatusBadge>
             </div>
           </div>
 

@@ -89,7 +89,7 @@
   --muted: oklch(0.27 0.01 110);
   --muted-foreground: oklch(0.68 0.012 110);
 
-  --accent: oklch(0.30 0.012 110);
+  --accent: oklch(0.3 0.012 110);
   --accent-foreground: oklch(0.96 0.01 110);
 
   --destructive: oklch(0.66 0.24 27);
@@ -221,14 +221,7 @@
   }
 
   .panel-notched-sm {
-    clip-path: polygon(
-      0 8px,
-      8px 0,
-      100% 0,
-      100% calc(100% - 8px),
-      calc(100% - 8px) 100%,
-      0 100%
-    );
+    clip-path: polygon(0 8px, 8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
   }
 
   /* Glowing edge */
@@ -274,8 +267,12 @@
 
   /* Animated scanning line */
   @keyframes scan {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100%); }
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
   }
   .scan-line::after {
     content: "";
@@ -291,8 +288,15 @@
   }
 
   @keyframes pulse-dot {
-    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 currentColor; }
-    50% { opacity: 0.6; box-shadow: 0 0 0 6px transparent; }
+    0%,
+    100% {
+      opacity: 1;
+      box-shadow: 0 0 0 0 currentColor;
+    }
+    50% {
+      opacity: 0.6;
+      box-shadow: 0 0 0 6px transparent;
+    }
   }
   .pulse-dot {
     animation: pulse-dot 1.6s ease-in-out infinite;
@@ -300,8 +304,13 @@
 
   /* Skeleton blocks */
   @keyframes skeleton-pulse {
-    0%, 100% { opacity: 0.55; }
-    50% { opacity: 0.95; }
+    0%,
+    100% {
+      opacity: 0.55;
+    }
+    50% {
+      opacity: 0.95;
+    }
   }
   .skeleton-block {
     background: linear-gradient(
@@ -315,8 +324,12 @@
 
   /* Sweeping radar shimmer for chart skeletons */
   @keyframes shimmer-sweep {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
   }
   .shimmer-radar {
     background: linear-gradient(
@@ -332,7 +345,9 @@
 
   /* Mechanical 3-square fetch loader */
   @keyframes block-loader-pulse {
-    0%, 70%, 100% {
+    0%,
+    70%,
+    100% {
       background-color: var(--accent);
       box-shadow: none;
     }
@@ -361,12 +376,14 @@
     border-color: var(--plasma);
   }
   .brackets::before {
-    top: -1px; left: -1px;
+    top: -1px;
+    left: -1px;
     border-top: 1px solid;
     border-left: 1px solid;
   }
   .brackets::after {
-    bottom: -1px; right: -1px;
+    bottom: -1px;
+    right: -1px;
     border-bottom: 1px solid;
     border-right: 1px solid;
   }

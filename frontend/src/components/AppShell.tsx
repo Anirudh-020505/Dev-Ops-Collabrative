@@ -49,8 +49,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           <div className="label-tech px-3 pb-3">// navigation</div>
           <ul className="space-y-1">
             {navItems.map((item) => {
-              const isActive =
-                item.to === "/" ? path === "/" : path.startsWith(item.to);
+              const isActive = item.to === "/" ? path === "/" : path.startsWith(item.to);
               const Icon = item.icon;
               return (
                 <li key={item.to}>
