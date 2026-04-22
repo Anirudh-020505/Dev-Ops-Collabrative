@@ -54,5 +54,6 @@ test('backend integration: /health returns UP', async (t) => {
   assert.equal(response.status, 200);
 
   const body = await response.json();
-  assert.deepEqual(body, { status: 'UP' });
+  assert.equal(body.status, 'UP');
+  assert.ok(body.timestamp, 'Response should include a timestamp');
 });

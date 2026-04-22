@@ -14,7 +14,7 @@ services:
     name: devops-backend
     env: node
     plan: free
-    buildCommand: npm install && npm run build && npx prisma migrate deploy
+    buildCommand: npm install --include=dev && npm run build && npx prisma migrate deploy
     startCommand: npm start
     rootDir: backend
     envVars:
